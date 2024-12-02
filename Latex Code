@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{natbib}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+
+\title{Abgabe 1 für Computergestützte Methoden}
+\author{Gruppe 5 \\Dlda Abas: 4338708 \\Subidya Srirangavasan: 4338455 \\Melissa Ergün: 4353910}
+\date{01.12.2024}
+
+\begin{document}    
+\maketitle 
+\tableofcontents
+\newpage
+\section{Der zentrale Grenzwersatz}
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter 
+$(i.i.d.)$ Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV annähernd normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nützlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist. 
+
+
+
+\subsection{Aussage}
+ 
+Sei $X_{1}, X_{2},...,X_{n}$ eine Folge von $i.i.d.$ ZV mit dem Erwartungswert \begin{math} \mu = \mathbb{E}(X_{i})
+\end{math}
+mit der Varianz $\sigma^{2}= $ Var($X_{i}$), wobei 0 
+$<   \sigma^{2} < \infty$. 
+Dann konvergiert die standardrisierte Summe $Z_{n}$ dieser ZV für
+\begin{math} n \rightarrow \infty\end{math}
+in Verteilung gegen eine Standardnormalverteilung:\footnote{Der zentrale Grenzwertsatz hat verschiedeme Verallgemeinerungen. Eine davon ist der textbf{Lindeberg-Feller-Zentrale-Grenzwertsatz} \cite[S.238]{Klenke}, der schwächere Bedingungen an die Unabhängigkeit und die identische Verteilung der ZV stellt} 
+
+\begin{equation}
+\label{ZGW:Konvergenz}
+Z_{n}=\frac{\sum_{n=0}^\infty X_{i}-n\mu}{\sigma\sqrt{n}}\xrightarrow{d} \mathcal{N}(0,1) \end{equation} Das bedeutet, dass für große $n$ die Sunme der ZV nährungsweise normalverteilt ist mit Erwartungswert $n\mu$ und Varianz $\sigma^{2}$:
+
+\begin{equation}
+\label{Normalvert}
+\sum_{i=0}^\infty X_{i} \sim \mathcal{N}
+(n\mu,n\sigma^{2})
+\end{equation}
+
+
+\subsection{Erklärung der Standardisierung}
+Um die Summe der ZV in eine Standardnormalverteilung zu transformieren, subtrahiert man den Erwartungswert $n\mu$ und teilt durch die Standardabweichung $\sigma\sqrt{n}$. Dies führt zu der obigen Formel  \eqref{ZGW:Konvergenz} . Die Darstellung\eqref{Normalvert} ist für $n \rightarrow \infty$ nicht wohldefiniert.
+
+
+\subsection{Anwendungen}
+Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeitstheorie angewendet. Typische Beispiele sind \cite{ZGW}:
+\begin{itemize} %Auflistung
+    \item die Durchführung von Hypothesentests
+    \item die Approximation von Wahrscheinlichkeiten für Summen oder Mittelwerte 
+\end{itemize}
+
+\newpage
+
+
+\section{Bearbeitung Aufgabe 1}
+\subsection{Thema: Datenverarbeitung}
+\subsubsection{Analyse der Daten und Import in Tabellenkalkulation Excel}
+Bei dem gegebenen Datensatz handelt es sich um eine Csv Datei. Das heisst, dass beim Öffnen der Datei die einzelnen Werte mit einem Komma getrennt sind. Die Daten veranschaulichen einen Fahrradverleih und die an dem Tag gegebenen Wetterbedingungen.  
+Die Sichtung der Daten ergibt:
+\begin{itemize}
+    \item Spalte 1 (group) : Die Daten sind nach Gruppennummern eingeteilt, d
+    jenes bedeutet, dass jede Gruppe einen Datensatz zugeteilt bekommen hat.
+    \item Spalte 2 (station): Dies ist Äquivalent zu der Gruppenzuteilung der Daten. Jede Gruppe hat einen Stationsnamen/eine Station zugeteil bekommen. In der Gruppe 5 ist der Fokus bei der Station 10 Ave \& W 14 St
+    \item Spalten 3-6 (date, day\_of\_year, day\_of\_week, month\_of\_year) ordnen den Daten jeweils ein Tag im Jahr zu (mit Datum, Anzahl des Tages im Jahr, Wochentag (1=Montag, 7=Sonntag), Monat) jeden Tag, chronologisch vom 01.01.2023 bis zum 31.12.2023.
+    Dementsprechend gibt es insgesamt 365 Messungen/Daten.
+    \item Spalten 7-11 geben die Wetterbedingungen wieder. Angegeben ist der Niederschlag (precipitation), die Windgeschwindigkeit (windspeed), die minimale, durchschnittliche und maximale Temperatur. Für die Aufgabe ist nur die 
+    durchschnittliche/mittlere Temperatur relevant.
+    \item Die letzte Spalte teilt die Anzahl der ausgeliehenen Fahrräder zu.
+\end{itemize}
+Die relevanten Spalten für die Bearbeitung der Aufgaben sind $group$ (hier: group 5), $station$, $date$ und $average$ $temperature$.
+Der Import in eine Tabellenkalkulation ist für die Aufgabe essentiell. Dazu wird die Datei gespeichert und in der Tabellen Kalkulation $Excel$ eingefügt: Daten->Daten abrufen->aus Datei.
+\subsubsection{Nummer 1: Berechnung der höchsten mittleren Temperatur}
+Um die mittlere Temperatur zu berechnen nutzt man den Befehl $=Max($ \cite{BefehlMaxTemp}, diesen Befehl gibt man in der Zelle unter dem letzten Wert in der Spalte J (\glqq average temperature\grqq) (Zelle:J367), ein. Anschlie\ss end makiert man die gesamte Spalte, um alle Zahlenwerte aufzufassen und unter diesen die höchte Temeratur zu bestimmen. Man kann auch mit dem Befehl \glqq ZelleA:ZelleB\grqq, alle Zellen von Zelle A bis B, auffassen.\\
+\textbf{Befehl: $$ =MAX(J2:J366)$$ }\textbf{Ergebnis:} $$83 ^{\circ} \text{F}$$
+Da dieses Ergebnis in der Einheit Fahrenheit vermerkt ist, muss man dieses noch umrechnen mit Hilfe des Befehls: \glqq =UMWANDELN(Zahl;Grösse1;Grösse2)\grqq \cite{BefehlUmwandeln}.   Dies wird erneut unter die letzte beschriebene Zelle in J eingegeben (Zelle: J368)
+\textbf{Befehl}: \\$$=UMWANDELN(J367;F ;C)$$\textbf\\{Ergebnis:}$$28,33^{\circ} \text{C}$$
+\subsection{Thema: Datenhaltung}
+1. Normalform: Es werden nur atomare Werte verwendet\\2. Normalform: 1. NF erfüllt, jedes Nichtschlüssel-Attribut ist nur vom Primärschlüssel abhängig, nicht aber von einer Teilmenge desselben.
+\subsubsection{Datenbank-Schema entwerfen}
+Zunächst hat man ein Datenbank-Schema erzeugt für alle Daten in der CSV-Datei, wobei der Datensatz auf der Gruppe 5 basiert:
+\\\\Verleih(\underline{VerleihId\#},WetterId\#, count)
+\\Wetter(\underline{WetterId\#}, Datumid\#, precipitation, windspeed, min\_temperature, average\_temperature, max\_temperature)
+\\Datum(\underline{DatumId\#}, Stationid\#,day\_of\_year, day\_of\_week, month\_of\_year)\\station(\underline{Stationid\#}, name)\\\\Oder: Es ist möglich eine Tabelle zu erzeugen mit den für die Abgabe wichtigen Daten: \\\\Verleih(\underline{VerleihId\#}, Gruppe, Station, Datum, Mittlere Temperatur)\newpage
+\subsubsection{Umsetzung des Schemas in SQL und Import der zugeordneten Daten als CSV}
+Um eine SQL-Tabelle zu erstellen wurden folgende Befehle genutzt \cite{Powerpoint1} (1. Schema): 
+\\\\ CREATE TABLE Stationen (
+\\Id INTEGER PRIMARY KEY,
+\\ Name  TEXT NOT NULL \\):
+\\\\CREATE TABLE Datum ( \\Id   INTEGER PRIMARY KEY,\\StationId INTEGER
+\\Date TEXT NOT NULL,\\Dayofyear INTEGER,\\Dayofweek INTEGER,\\Month INTEGER\\
+FOREIGN KEY(stationid) REFERENCES station(id) \\);
+\\\\CREATE TABLE Wetter(\\Id INTEGER PRIMARY KEY, \\DatumId INTEGER,\\Precipitation DECIMAL, \\Windspeed DECIMAL, \\MinTemperture INTEGER,\\AverageTemperature INTEGER, \\MaxTemperature INTEGER, \\FOREIGN KEY (DatumId) REFERENCES Datum(id)\\);
+\\\\CREATE TABLE Verleih(\\id INTEGER PRIMARY KEY NOT NULL, \\Wetterid INTEGER, \\count INTEGER,\\FOREIGN KEY (WetterId) REFERENCES Wetter (Id)\\);
+\\\\Oder mit den gekürzten Werten:
+\\ \\ CREATE TABLE Verleih (\\  ID INTEGER PRIMARY KEY,\\ (Gruppe INTEGER,-> nur bei nicht gekürzten Datensatz)\\ Station TEXT, \\ Datum TEXT,\\ Mittlere Temperatur REAL\\);
+\\Anschließend wurde die zuvor abgeänderte CSV-Datei mit den gefilterten Werten der Gruppe 5 mit dem Tool SQLiteOnline \cite{SQLiteOnline} in die Datenbank importiert, mithilfe des Buttons $Import$.
+\subsubsection{Bestimmung der höchsten mittleren Temperatur mit SQL}
+Für die SQL-Abfrage zur höchsten mittleren Temperatur wurde der SQL-Befehl SELECT MAX\cite{SQLMax} genutzt:\\\\1.Schema\\\\ SELECT MAX (AverageTemperature) AS hoechstemittlereTemperatur \\FROM Wetter \\\\2.Schema \\ \\SELECT MAX((average\_temperature-32)*5/9) AS hoechstemittlereTemperatur\\FROM Verleih \\(WHERE group = 5 -> für ungekürzten Datensatz)\\ 
+\\\textbf{Ergebnis:}$$28,33^{\circ} \text{C}$$
+\subsection{Links zur Abgabe}
+GitHub-Link: \href{https://github.com/dldaabas/Comet_abgabe}{Latex Code auf Git Hub}
+\\Overleaf-Link zur Einsicht des Codes: \href{https://de.overleaf.com/read/gmdfgtsrfsck#0576ce}{Overleaf Link}
+\nocite{Klenke}\nocite{Powerpoint}\nocite{Zeichen}\nocite{zitat}\nocite{Zitierenohnev}\nocite{Zahlen}\nocite{SortierenLit}\nocite{BefehlUmwandeln}\nocite{GradLatex}\nocite{Buchstabenfett}\nocite{table}\nocite{Unterstrich}\nocite{lernen}
+
+\newpage
+
+\bibliographystyle{unsrt}
+\bibliography{References}
+
+\end{document}
+
+ 
